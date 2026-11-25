@@ -197,6 +197,9 @@ header{position:sticky;top:0;z-index:20;background:color-mix(in srgb,var(--sand)
 .map iframe{display:block;width:100%;height:260px;border:0}
 .map a{display:block;padding:12px 16px;background:var(--sand);color:var(--ink);font-weight:500;font-size:.93rem;text-decoration:none;border-top:1px solid var(--line)}
 .map a:hover{color:var(--blue)}
+.msform{background:var(--sand);border-radius:24px;padding:16px;border:1px solid var(--line);display:grid;gap:14px;align-self:start}
+.msform iframe{width:100%;height:880px;border:0;border-radius:16px;background:#fff}
+.msform .btn{justify-self:start}
 form{background:var(--sand);border-radius:24px;padding:30px;display:grid;gap:16px;align-content:start;align-self:start;border:1px solid var(--line)}
 .row2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
 label{display:grid;gap:6px;font-weight:500;font-size:.92rem}
@@ -448,27 +451,11 @@ footer{background:var(--ink);color:#AEB8CF;padding:36px 0;font-size:.9rem}
         <a href="https://www.google.com/maps/search/?api=1&amp;query=88+Misr+Helwan+Agricultural+Road,+Maadi,+Cairo,+Egypt" target="_blank" rel="noopener" data-i18n="coMapOpen">88 Misr Helwan Agricultural Road, Maadi · Get directions ↗</a>
       </div>
     </div>
-    <form id="contactForm" novalidate>
-      <div class="row2">
-        <label for="f-name"><span data-i18n="fName">Your name</span><input id="f-name" name="name" required autocomplete="name"></label>
-        <label for="f-org"><span data-i18n="fOrg">Organisation</span><input id="f-org" name="org" autocomplete="organization"></label>
-      </div>
-      <label for="f-email"><span data-i18n="fEmail">Email</span><input id="f-email" name="email" type="email" required autocomplete="email"></label>
-      <label for="f-topic"><span data-i18n="fTopic">What do you need?</span>
-        <select id="f-topic" name="topic">
-          <option data-i18n="o1">Vocational training programme</option>
-          <option data-i18n="o2">Life skills and entrepreneurship</option>
-          <option data-i18n="o3">Digital and coding skills</option>
-          <option data-i18n="o4">Recruitment or job fair</option>
-          <option data-i18n="o5">Curriculum consultancy</option>
-          <option data-i18n="o6">Other inquiry</option>
-        </select>
-      </label>
-      <label for="f-msg"><span data-i18n="fMsg">Message</span><textarea id="f-msg" name="message" required></textarea></label>
-      <input type="text" name="_honey" id="f-honey" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0">
-      <button class="btn btn-dark" type="submit" id="sendBtn" data-i18n="fSend">Send message</button>
-      <p class="form-note" id="formNote" data-i18n="fNote" aria-live="polite">We usually reply within two working days.</p>
-    </form>
+    <div class="msform">
+      <iframe src="https://forms.cloud.microsoft/Pages/ResponsePage.aspx?id=Qa0OseesLkyVvJ3_KxfbVHnVm1ARxPVMlKQ_kgBj1E9UNjZCTUw3RFQ3MlFQOUdWODQzWkFJMkpDWC4u&amp;embed=true" title="Contact Nahj form" loading="lazy" allowfullscreen></iframe>
+      <a class="btn btn-dark" href="https://forms.cloud.microsoft/Pages/ResponsePage.aspx?id=Qa0OseesLkyVvJ3_KxfbVHnVm1ARxPVMlKQ_kgBj1E9UNjZCTUw3RFQ3MlFQOUdWODQzWkFJMkpDWC4u" target="_blank" rel="noopener" data-i18n="fOpen">Open the form in a new tab</a>
+      <p class="form-note" data-i18n="fNote2">Messages go straight to our team at info@nahj-dev.com. We usually reply within two working days.</p>
+    </div>
   </div>
 </section>
 </main>
@@ -551,7 +538,7 @@ const AR = {
   coMapLink:"افتح في خرائط جوجل ↗", coFbL:"فيسبوك", coMsgr:"راسلنا عبر ماسنجر ↗", coMapOpen:"٨٨ طريق مصر حلوان الزراعي، المعادي · احصل على الاتجاهات ↗",
   fName:"الاسم", fOrg:"المؤسسة", fEmail:"البريد الإلكتروني", fTopic:"ما الذي تحتاجه؟",
   o1:"برنامج تدريب مهني", o2:"المهارات الحياتية وريادة الأعمال", o3:"المهارات الرقمية والبرمجة", o4:"التوظيف أو معرض وظائف", o5:"استشارات المناهج", o6:"استفسار آخر",
-  fMsg:"الرسالة", fSend:"إرسال الرسالة", fNote:"نرد عادةً خلال يومي عمل.",
+  fMsg:"الرسالة", fOpen:"افتح النموذج في نافذة جديدة", fNote2:"تصل الرسائل مباشرة إلى فريقنا على info@nahj-dev.com، ونرد عادةً خلال يومي عمل.", fSend:"إرسال الرسالة", fNote:"نرد عادةً خلال يومي عمل.",
   footName:"نهج للحلول التنموية والتدريبية", footCopy:"© 2026", footLegal:"سجل تجاري 282816 · بطاقة ضريبية 773-944-389"
 };
 const EN = {};
