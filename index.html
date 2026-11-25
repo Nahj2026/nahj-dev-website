@@ -1,0 +1,604 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Nahj for Development and Training Solutions</title>
+<meta name="description" content="Nahj designs and delivers vocational, digital, life-skills and entrepreneurship training in Egypt that leads to jobs, self-employment and small businesses.">
+<link rel="icon" type="image/png" href="favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Readex+Pro:wght@400;500;600;700&family=IBM+Plex+Sans+Arabic:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  /* Layout idea: one dashed "path" (نهج) runs through the page, from training to income */
+  --sand:#F5EADB;
+  --paper:#FFFBF5;
+  --ink:#0B2A42;
+  --blue:#004973;
+  --sun:#F6C736;
+  --muted:#5A6276;
+  --line:#E3D5C2;
+  --display:"Readex Pro","IBM Plex Sans Arabic",system-ui,sans-serif;
+  --body:"IBM Plex Sans Arabic","Readex Pro",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --max:1180px;
+  color-scheme:light;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{animation:none!important;transition:none!important}}
+body{margin:0;background:var(--sand);color:var(--ink);font-family:var(--body);font-size:17px;line-height:1.65}
+img{max-width:100%;height:auto;display:block}
+a{color:var(--blue)}
+a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible{outline:3px solid var(--sun);outline-offset:3px}
+h1,h2,h3{font-family:var(--display);line-height:1.15;text-wrap:balance;margin:0}
+h2{font-size:clamp(1.9rem,3.6vw,2.7rem);font-weight:600;letter-spacing:-.01em}
+h3{font-size:1.2rem;font-weight:600}
+p{margin:0}
+.wrap{max-width:var(--max);margin:0 auto;padding:0 24px}
+.eyebrow{font-family:var(--display);font-size:.82rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--blue);display:flex;align-items:center;gap:10px}
+[dir="rtl"] .eyebrow{letter-spacing:0}
+.eyebrow::before{content:"";width:28px;border-top:2px dashed currentColor}
+.lead{font-size:1.12rem;color:var(--muted);max-width:62ch}
+section{padding:96px 0}
+
+/* Header */
+header{position:sticky;top:0;z-index:20;background:color-mix(in srgb,var(--sand) 92%,transparent);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+.nav{display:flex;align-items:center;justify-content:space-between;gap:20px;height:72px}
+.brand{display:flex;align-items:center;gap:12px;text-decoration:none;color:var(--ink)}
+.mark{width:52px;height:auto;flex:none}
+.brand-name{font-family:var(--display);font-weight:700;color:var(--blue);font-size:1.25rem;letter-spacing:.06em;line-height:1}
+.brand-sub{display:block;font-size:.72rem;color:var(--muted);letter-spacing:.02em;font-weight:500;margin-top:3px}
+.links{display:flex;gap:26px;align-items:center}
+.links a{color:var(--ink);text-decoration:none;font-weight:500;font-size:.95rem}
+.links a:hover{color:var(--blue)}
+.lang{font-family:var(--display);border:1.5px solid var(--ink);background:transparent;color:var(--ink);border-radius:999px;padding:6px 16px;font-size:.92rem;font-weight:600;cursor:pointer}
+.lang:hover{background:var(--ink);color:var(--paper)}
+.menu-btn{display:none;background:none;border:0;padding:8px;cursor:pointer;color:var(--ink)}
+@media (max-width:900px){
+  .links{display:none;position:absolute;top:72px;inset-inline:0;background:var(--paper);flex-direction:column;align-items:flex-start;padding:20px 24px;gap:16px;border-bottom:1px solid var(--line)}
+  .links.open{display:flex}
+  .menu-btn{display:block}
+}
+
+/* Hero */
+.hero{padding:72px 0 88px;position:relative;overflow:hidden}
+.hero-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:48px;align-items:center}
+.hero h1{font-size:clamp(2.5rem,5.6vw,4.4rem);font-weight:700;letter-spacing:-.02em;margin:18px 0 22px}
+.hero h1 em{font-style:normal;color:var(--blue);position:relative;white-space:nowrap}
+.hero h1 em::after{content:"";position:absolute;inset-inline:0;bottom:-.08em;border-bottom:4px dashed var(--sun)}
+.hero .lead{margin-bottom:32px}
+.cta{display:flex;gap:14px;flex-wrap:wrap}
+.btn{font-family:var(--display);display:inline-flex;align-items:center;gap:10px;padding:14px 26px;border-radius:999px;font-weight:600;text-decoration:none;font-size:1rem;border:2px solid var(--ink);transition:transform .15s ease}
+.btn:hover{transform:translateY(-2px)}
+.btn-dark{background:var(--ink);color:var(--paper)}
+.btn-line{color:var(--ink);background:transparent}
+.hero-art{position:relative}
+.hero-art .word{position:absolute;inset-inline-end:-10px;top:-40px;font-family:"IBM Plex Sans Arabic",var(--display);font-weight:600;font-size:clamp(7rem,15vw,12rem);line-height:1;color:var(--ink);opacity:.07;pointer-events:none;user-select:none}
+.hero-art img{position:relative;border-radius:28px;background:var(--paper);box-shadow:0 30px 60px -30px rgba(21,33,63,.35)}
+@media (max-width:860px){.hero-grid{grid-template-columns:1fr}.hero-art{max-width:460px}}
+
+/* Stats */
+.stats{background:var(--ink);color:var(--paper);padding:56px 0}
+.stats-head{display:flex;justify-content:space-between;align-items:baseline;gap:20px;flex-wrap:wrap;margin-bottom:30px}
+.stats-head p{color:#B9C3DA;font-size:.95rem;max-width:56ch}
+.stats-head .eyebrow{color:var(--sun)}
+.stat-row{display:grid;grid-template-columns:repeat(4,1fr);gap:0}
+.stat{padding:8px 24px;border-inline-start:2px dashed rgba(255,255,255,.22)}
+.stat:first-child{border-inline-start:0;padding-inline-start:0}
+.num{font-family:var(--display);font-size:clamp(2.2rem,4.4vw,3.3rem);font-weight:700;font-variant-numeric:tabular-nums;color:#fff;line-height:1.1}
+.stat p{color:#C9D2E6;font-size:.95rem;margin-top:6px}
+@media (max-width:760px){.stat-row{grid-template-columns:1fr 1fr;row-gap:28px}.stat:nth-child(3){border-inline-start:0;padding-inline-start:0}}
+
+/* Founders quote */
+.quote{background:var(--ink);color:var(--paper);padding:72px 0}
+.quote figure{margin:0;display:grid;grid-template-columns:auto 1fr;gap:28px;align-items:start;max-width:940px}
+.quote .qmark{font-family:var(--display);font-size:6rem;line-height:.8;color:var(--sun)}
+[dir="rtl"] .quote .qmark{transform:scaleX(-1)}
+.quote blockquote{margin:0;font-family:var(--display);font-size:clamp(1.35rem,2.6vw,1.9rem);font-weight:500;line-height:1.45;text-wrap:balance;color:#fff}
+.quote figcaption{margin-top:22px;display:flex;align-items:center;gap:12px;color:#C2CBE0;font-size:.98rem}
+.quote figcaption::before{content:"";width:36px;border-top:2px dashed var(--sun)}
+.quote figcaption b{color:#fff;font-family:var(--display);font-weight:600}
+@media (max-width:600px){.quote figure{grid-template-columns:1fr;gap:4px}.quote .qmark{font-size:4.5rem}}
+
+/* About */
+.about-grid{display:grid;grid-template-columns:.95fr 1.05fr;gap:56px;align-items:center}
+.about-grid img{border-radius:24px}
+.about-copy{display:grid;gap:20px}
+.about-copy h2{margin-top:4px}
+.serve{display:flex;flex-wrap:wrap;gap:10px;margin-top:6px}
+.chip{background:var(--paper);border:1px solid var(--line);border-radius:999px;padding:6px 14px;font-size:.9rem;font-weight:500}
+@media (max-width:860px){.about-grid{grid-template-columns:1fr}}
+
+/* Programs */
+.programs{background:var(--paper)}
+.sec-head{display:grid;gap:14px;margin-bottom:44px}
+.prog-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:22px}
+.card{background:var(--sand);border-radius:22px;overflow:hidden;display:flex;flex-direction:column;border:1px solid var(--line)}
+.card .pic{aspect-ratio:4/3;overflow:hidden;background:#fff}
+.card .pic img{width:100%;height:100%;object-fit:cover;transition:transform .5s ease}
+.card:hover .pic img{transform:scale(1.04)}
+.card .body{padding:20px 20px 24px;display:grid;gap:8px}
+.card p{font-size:.94rem;color:var(--muted)}
+.tag{font-family:var(--display);font-size:.75rem;font-weight:600;color:var(--blue);letter-spacing:.04em}
+@media (max-width:1000px){.prog-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:520px){.prog-grid{grid-template-columns:1fr}}
+.prog-note{margin-top:30px;color:var(--muted);font-size:.95rem}
+
+/* Approach path */
+.path{position:relative;display:grid;grid-template-columns:repeat(4,1fr);gap:40px 28px;counter-reset:step;margin-top:10px}
+.step{position:relative;padding-top:58px}
+.step::before{counter-increment:step;content:counter(step,decimal-leading-zero);position:absolute;top:0;inset-inline-start:0;width:44px;height:44px;border-radius:50%;background:var(--paper);border:2px solid var(--ink);display:grid;place-items:center;font-family:var(--display);font-weight:600;font-size:.95rem;z-index:1}
+.step::after{content:"";position:absolute;top:21px;inset-inline-start:52px;inset-inline-end:-24px;border-top:2px dashed var(--blue)}
+.step:nth-child(4n)::after{display:none}
+.step:last-child::before{background:var(--sun);border-color:var(--sun);color:var(--ink)}
+.step h3{margin-bottom:6px}
+.step p{font-size:.94rem;color:var(--muted)}
+@media (max-width:860px){
+  .path{grid-template-columns:1fr;gap:26px}
+  .step{padding-top:0;padding-inline-start:66px;min-height:44px}
+  .step::after{top:52px;bottom:-22px;inset-inline-start:21px;inset-inline-end:auto;border-top:0;border-inline-start:2px dashed var(--blue)}
+  .step:nth-child(4n)::after{display:block}
+  .step:last-child::after{display:none}
+}
+.split{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:56px}
+.split div{background:var(--paper);border-radius:18px;padding:22px;border:1px solid var(--line)}
+.split strong{font-family:var(--display);font-size:1.6rem;color:var(--blue);display:block}
+.split p{font-size:.94rem;color:var(--muted)}
+@media (max-width:760px){.split{grid-template-columns:1fr}}
+
+/* Experience */
+.experience{background:var(--ink);color:var(--paper)}
+.experience .eyebrow{color:var(--sun)}
+.experience .lead{color:#C2CBE0}
+.exp-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.exp{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.12);border-radius:20px;padding:26px;display:grid;gap:14px;align-content:start}
+.exp .who{font-family:var(--display);font-size:.8rem;letter-spacing:.08em;text-transform:uppercase;color:var(--sun);font-weight:600}
+[dir="rtl"] .exp .who{letter-spacing:0}
+.exp h3{color:#fff}
+.exp p{color:#C2CBE0;font-size:.95rem}
+.flow{display:flex;flex-wrap:wrap;align-items:center;gap:6px 8px;margin-top:4px}
+.flow span{font-family:var(--display);font-variant-numeric:tabular-nums;font-size:.86rem;background:rgba(255,255,255,.08);border-radius:8px;padding:4px 10px;color:#fff}
+.flow i{font-style:normal;color:var(--sun)}
+[dir="rtl"] .flow i{transform:scaleX(-1);display:inline-block}
+.exp-more{display:grid;grid-template-columns:1fr 1fr;gap:22px;margin-top:22px}
+@media (max-width:960px){.exp-grid{grid-template-columns:1fr}.exp-more{grid-template-columns:1fr}}
+.founders{margin-top:64px;display:grid;grid-template-columns:minmax(0,760px);gap:48px;align-items:start;padding-top:48px;border-top:2px dashed rgba(255,255,255,.18)}
+.founders h3{font-size:1.6rem;color:#fff;margin-bottom:12px}
+@media (max-width:860px){.founders{grid-template-columns:1fr}}
+
+/* Why / partners */
+.why-grid{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:start}
+.why-list{display:grid;gap:22px;margin:0;padding:0;list-style:none}
+.why-list li{display:grid;grid-template-columns:36px 1fr;gap:14px}
+.why-list svg{margin-top:4px}
+.why-list p{color:var(--muted);font-size:.95rem}
+.partners{background:var(--paper);border-radius:24px;padding:30px;border:1px solid var(--line);display:grid;gap:18px}
+.partner{display:flex;justify-content:space-between;gap:16px;padding-bottom:14px;border-bottom:1px dashed var(--line)}
+.partner:last-child{border-bottom:0;padding-bottom:0}
+.partner b{font-family:var(--display);font-weight:600}
+.partner span{color:var(--muted);font-size:.9rem;text-align:end}
+@media (max-width:860px){.why-grid{grid-template-columns:1fr}}
+
+/* Contact */
+.contact{background:var(--paper)}
+.contact-grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:56px}
+.info{display:grid;gap:22px;margin-top:28px}
+.info div{display:grid;gap:2px}
+.info small{font-family:var(--display);font-size:.78rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--blue)}
+[dir="rtl"] .info small{letter-spacing:0}
+.info a,.info p{color:var(--ink);font-size:1.05rem;text-decoration:none}
+.ltr{direction:ltr;unicode-bidi:isolate;display:inline-block}
+.maplink{font-size:.92rem!important;color:var(--blue)!important;text-decoration:underline!important;margin-top:2px}
+.map{margin-top:28px;border-radius:20px;overflow:hidden;border:1px solid var(--line);background:linear-gradient(135deg,#E9DCC8,#F5EADB)}
+.map iframe{display:block;width:100%;height:260px;border:0}
+.map a{display:block;padding:12px 16px;background:var(--sand);color:var(--ink);font-weight:500;font-size:.93rem;text-decoration:none;border-top:1px solid var(--line)}
+.map a:hover{color:var(--blue)}
+form{background:var(--sand);border-radius:24px;padding:30px;display:grid;gap:16px;align-content:start;align-self:start;border:1px solid var(--line)}
+.row2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+label{display:grid;gap:6px;font-weight:500;font-size:.92rem}
+input,textarea,select{font:inherit;padding:12px 14px;border-radius:12px;border:1.5px solid var(--line);background:var(--paper);color:var(--ink)}
+textarea{min-height:130px;resize:vertical}
+form .btn{justify-self:start;cursor:pointer}
+.form-note{font-size:.9rem;color:var(--muted)}
+@media (max-width:860px){.contact-grid{grid-template-columns:1fr}.row2{grid-template-columns:1fr}}
+
+footer{background:var(--ink);color:#AEB8CF;padding:36px 0;font-size:.9rem}
+.foot{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;align-items:center}
+.foot b{color:#fff;font-family:var(--display)}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap nav">
+    <a class="brand" href="#top" aria-label="Nahj home">
+      <img class="mark" src="nahj-mark.png" alt="" width="200" height="172">
+      <span><span class="brand-name" data-i18n="brand">NAHJ</span><span class="brand-sub" data-i18n="brandSub">Development &amp; Training Solutions</span></span>
+    </a>
+    <nav class="links" id="links" aria-label="Main">
+      <a href="#about" data-i18n="navAbout">About</a>
+      <a href="#programs" data-i18n="navPrograms">Programs</a>
+      <a href="#approach" data-i18n="navApproach">Approach</a>
+      <a href="#experience" data-i18n="navExperience">Experience</a>
+      <a href="#partners" data-i18n="navPartners">Partners</a>
+      <a href="#contact" data-i18n="navContact">Contact</a>
+      <button class="lang" id="langBtn" type="button" aria-label="Switch language">عربي</button>
+    </nav>
+    <button class="menu-btn" id="menuBtn" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="links">
+      <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+    </button>
+  </div>
+</header>
+
+<main id="top">
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <span class="eyebrow" data-i18n="heroEyebrow">Vocational training · Employment · Small business</span>
+      <h1><span data-i18n="heroTitleA">Training that ends in</span> <em data-i18n="heroTitleB">a job or a business</em></h1>
+      <p class="lead" data-i18n="heroLead">Nahj designs and delivers practical vocational, digital, life-skills and entrepreneurship programmes in Egypt for youth, women, refugees and host communities, then follows every graduate until the skill turns into income.</p>
+      <div class="cta">
+        <a class="btn btn-dark" href="#contact" data-i18n="ctaPrimary">Partner with us</a>
+        <a class="btn btn-line" href="#programs" data-i18n="ctaSecondary">See our programs</a>
+      </div>
+    </div>
+    <div class="hero-art">
+      <span class="word" aria-hidden="true">نهج</span>
+      <img src="certificate.jpg" alt="Trainees in cooking, administration and maintenance standing in front of a certificate" data-i18n-alt="altHero" width="1100" height="1100">
+    </div>
+  </div>
+</section>
+
+<section class="quote" aria-label="A word from our founders">
+  <div class="wrap">
+    <figure>
+      <span class="qmark" aria-hidden="true">“</span>
+      <div>
+        <blockquote data-i18n="qText">We founded Nahj because a certificate alone does not change a life. A steady job or a working business does, so we stay with every trainee until their skill becomes an income.</blockquote>
+        <figcaption><span><b data-i18n="qWho">The Founders and Board</b> · <span data-i18n="qOrg">Nahj for Development and Training Solutions</span></span></figcaption>
+      </div>
+    </figure>
+  </div>
+</section>
+
+<section id="about">
+  <div class="wrap about-grid">
+    <img src="consulting.jpg" alt="A trainer presenting to a small group in a meeting room" data-i18n-alt="altAbout" width="1100" height="825">
+    <div class="about-copy">
+      <span class="eyebrow" data-i18n="aboutEyebrow">About Nahj</span>
+      <h2 data-i18n="aboutTitle">Nahj means “the path”. Ours runs from the classroom to the labour market.</h2>
+      <p data-i18n="aboutP1">Nahj for Development and Training Solutions is an Egyptian company specialised in vocational training, capacity building, skills development and training consultancy. We build every programme around what employers need, combining theory with hands-on practice so trainees leave with skills they can sell.</p>
+      <p data-i18n="aboutP2">Our trainers and consultants write and update the curricula, run fully equipped workshops, and measure what each trainee can do at the end, not just who attended.</p>
+      <div class="serve" aria-label="Who we serve">
+        <span class="chip" data-i18n="c1">Youth 18–35</span>
+        <span class="chip" data-i18n="c2">Women</span>
+        <span class="chip" data-i18n="c3">Refugees &amp; migrants</span>
+        <span class="chip" data-i18n="c4">Host communities</span>
+        <span class="chip" data-i18n="c5">Technical graduates</span>
+        <span class="chip" data-i18n="c6">Micro-business owners</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="programs" id="programs">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow" data-i18n="progEyebrow">Programs</span>
+      <h2 data-i18n="progTitle">Trades the market is hiring for</h2>
+      <p class="lead" data-i18n="progLead">Courses run 2 to 4 weeks, about 85% practical, in groups of 6 to 20. Every trainee gets their own tools and materials.</p>
+    </div>
+    <div class="prog-grid">
+      <article class="card">
+        <div class="pic"><img src="phone-repair.jpg" alt="Technicians repairing a giant smartphone" data-i18n-alt="altPhone" loading="lazy" width="1100" height="1100"></div>
+        <div class="body"><span class="tag" data-i18n="t1tag">Technical</span><h3 data-i18n="t1">Mobile phone maintenance</h3><p data-i18n="t1p">Diagnosis, screen and board repair, software flashing, and running a repair counter.</p></div>
+      </article>
+      <article class="card">
+        <div class="pic"><img src="appliances.jpg" alt="A house connected to air conditioner, washing machine, TV and camera" data-i18n-alt="altAppl" loading="lazy" width="1100" height="829"></div>
+        <div class="body"><span class="tag" data-i18n="t2tag">Technical</span><h3 data-i18n="t2">Appliances, electrical &amp; AC</h3><p data-i18n="t2p">Home appliance and electrical maintenance, air conditioning and refrigeration, and satellite installation.</p></div>
+      </article>
+      <article class="card">
+        <div class="pic"><img src="sewing.jpg" alt="A woman sewing beside a dress form" data-i18n-alt="altSew" loading="lazy" width="1100" height="733"></div>
+        <div class="body"><span class="tag" data-i18n="t3tag">Garments</span><h3 data-i18n="t3">Sewing &amp; fashion design</h3><p data-i18n="t3p">Tailoring, embroidery, ready-made garments, home furnishings and bags, and modern and heritage design.</p></div>
+      </article>
+      <article class="card">
+        <div class="pic"><img src="handicrafts.jpg" alt="Hands cutting and gluing paper shapes on a craft mat" data-i18n-alt="altCraft" loading="lazy" width="1100" height="733"></div>
+        <div class="body"><span class="tag" data-i18n="t4tag">Handicrafts</span><h3 data-i18n="t4">Crafts &amp; small production</h3><p data-i18n="t4p">Crochet, macramé, accessories and brass jewellery, candles, resin, leather goods and detergent making.</p></div>
+      </article>
+      <article class="card">
+        <div class="pic"><img src="hairdresser.jpg" alt="A hairdresser styling a client's hair" data-i18n-alt="altHair" loading="lazy" width="1100" height="1100"></div>
+        <div class="body"><span class="tag" data-i18n="t5tag">Beauty</span><h3 data-i18n="t5">Makeup &amp; hairdressing</h3><p data-i18n="t5p">Makeup, coiffure and beauty specialisations, with hygiene, client care and pricing.</p></div>
+      </article>
+      <article class="card">
+        <div class="pic"><img src="barbershop.jpg" alt="A barber cutting a customer's hair" data-i18n-alt="altBarber" loading="lazy" width="1100" height="1100"></div>
+        <div class="body"><span class="tag" data-i18n="t6tag">Beauty</span><h3 data-i18n="t6">Barbering</h3><p data-i18n="t6p">Cutting, shaving and beard styling, tool safety, and setting up a chair or a shop.</p></div>
+      </article>
+      <article class="card">
+        <div class="pic"><img src="cooking.jpg" alt="Two trainees in aprons preparing food" data-i18n-alt="altCook" loading="lazy" width="1100" height="1100"></div>
+        <div class="body"><span class="tag" data-i18n="t7tag">Food</span><h3 data-i18n="t7">Bakery &amp; pastry</h3><p data-i18n="t7p">Bakery and confectionery production and assistant pastry chef, with food safety and costing.</p></div>
+      </article>
+      <article class="card">
+        <div class="pic"><img src="business-training.jpg" alt="A trainer leading a business training session" data-i18n-alt="altBiz" loading="lazy" width="1100" height="1100"></div>
+        <div class="body"><span class="tag" data-i18n="t8tag">Business &amp; digital</span><h3 data-i18n="t8">Entrepreneurship, life &amp; digital skills</h3><p data-i18n="t8p">Business plans, small business management, employability, digital marketing, coding and data analytics.</p></div>
+      </article>
+    </div>
+    <p class="prog-note" data-i18n="progNote">Need a different trade? We design new training packages to match a programme's labour-market study.</p>
+  </div>
+</section>
+
+<section id="approach">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow" data-i18n="apEyebrow">Our approach</span>
+      <h2 data-i18n="apTitle">Eight steps from first day to first income</h2>
+      <p class="lead" data-i18n="apLead">Each programme moves trainees along the same path, adapted to the trade and to their starting level.</p>
+    </div>
+    <div class="path">
+      <div class="step"><h3 data-i18n="p1">Assess</h3><p data-i18n="p1d">A short entry test of each trainee's level, experience and goals.</p></div>
+      <div class="step"><h3 data-i18n="p2">Learn</h3><p data-i18n="p2d">The essential theory and safety rules, explained simply.</p></div>
+      <div class="step"><h3 data-i18n="p3">Demonstrate</h3><p data-i18n="p3d">The trainer shows each technique on real tools and materials.</p></div>
+      <div class="step"><h3 data-i18n="p4">Practise</h3><p data-i18n="p4d">Repeated hands-on work under supervision, with constant feedback.</p></div>
+      <div class="step"><h3 data-i18n="p5">Produce</h3><p data-i18n="p5d">Real products and tasks in conditions that mirror a workplace.</p></div>
+      <div class="step"><h3 data-i18n="p6">Evaluate</h3><p data-i18n="p6d">Practical exams and pre/post tests show what each trainee can do.</p></div>
+      <div class="step"><h3 data-i18n="p7">Connect</h3><p data-i18n="p7d">Job fairs, employer interviews, internships, or a business plan.</p></div>
+      <div class="step"><h3 data-i18n="p8">Follow up</h3><p data-i18n="p8d">Technical, financial and marketing support until the work stands alone.</p></div>
+    </div>
+    <div class="split">
+      <div><strong data-i18n="sp1n">85 / 15</strong><p data-i18n="sp1">Practical to theory split in our technical courses.</p></div>
+      <div><strong data-i18n="sp2n">48 h</strong><p data-i18n="sp2">Maximum time to review any complaint, through phone, email or an on-site box.</p></div>
+      <div><strong data-i18n="sp3n">Live</strong><p data-i18n="sp3">Electronic attendance records that the funding partner can check at any time.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="experience" id="experience">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow" data-i18n="exEyebrow">Experience</span>
+      <h2 data-i18n="exTitle">What our programmes have delivered</h2>
+      <p class="lead" data-i18n="exLead">We measure results by people placed in jobs and businesses opened, so every project below is reported from outreach to outcome.</p>
+    </div>
+    <div class="exp-grid">
+      <article class="exp">
+        <span class="who" data-i18n="e1who">VeniceCom SRL · Italy</span>
+        <h3 data-i18n="e1">Software training to employment</h3>
+        <p data-i18n="e1p">Software, web and mobile development plus Italian work culture for graduates of Egyptian technical institutes and universities.</p>
+        <div class="flow"><span data-i18n="e1a">50 reached</span><i>→</i><span data-i18n="e1b">25 trained</span><i>→</i><span data-i18n="e1c">20 assessed</span><i>→</i><span data-i18n="e1d">9 hired</span></div>
+      </article>
+      <article class="exp">
+        <span class="who" data-i18n="e2who">Breadfast · Egypt</span>
+        <h3 data-i18n="e2">Recruitment and job fair</h3>
+        <p data-i18n="e2p">Outreach, pre-employment training and a job fair to staff roles across the company.</p>
+        <div class="flow"><span data-i18n="e2a">400 applicants</span><i>→</i><span data-i18n="e2b">100 hired</span></div>
+      </article>
+      <article class="exp">
+        <span class="who" data-i18n="e3who">Migrant women · Egypt</span>
+        <h3 data-i18n="e3">Employability and entrepreneurship</h3>
+        <p data-i18n="e3p">Five days of employability and entrepreneurship training, then business-plan review and start-up support.</p>
+        <div class="flow"><span data-i18n="e3a">25 trained</span><i>→</i><span data-i18n="e3b">18 business plans</span><i>→</i><span data-i18n="e3c">5 micro-businesses</span></div>
+      </article>
+    </div>
+    <div class="exp-more">
+      <article class="exp">
+        <span class="who" data-i18n="e4who">Italian company · Italy</span>
+        <h3 data-i18n="e4">Preparing Egyptian youth for jobs in Italy</h3>
+        <p data-i18n="e4p">Technical training in in-demand trades, intensive Italian language and professional culture, and placement with the company for qualified graduates.</p>
+      </article>
+      <article class="exp">
+        <span class="who" data-i18n="e5who">Technical schools · Egypt</span>
+        <h3 data-i18n="e5">Curriculum consultancy</h3>
+        <p data-i18n="e5p">Designing curricula and training programmes for newly established educational institutions and technical schools, aligned with what local industries need.</p>
+      </article>
+    </div>
+    <div class="founders">
+      <div>
+        <h3 data-i18n="fTitle">Built by people who ran livelihood programmes at scale</h3>
+        <p class="lead" data-i18n="fP">Our management team and trainers have designed and managed livelihood, vocational and employment programmes for refugees, migrants and Egyptian host communities, with local and international organisations.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="partners">
+  <div class="wrap why-grid">
+    <div>
+      <span class="eyebrow" data-i18n="whyEyebrow">Why Nahj</span>
+      <h2 data-i18n="whyTitle" style="margin:14px 0 30px">More than a training provider</h2>
+      <ul class="why-list">
+        <li><svg width="30" height="30" viewBox="0 0 30 30" fill="none" aria-hidden="true"><circle cx="15" cy="15" r="13" stroke="#004973" stroke-width="2" stroke-dasharray="3 3"/><path d="M9 15.5l4 4 8-9" stroke="#0B2A42" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg><div><h3 data-i18n="w1">Equipped workshops</h3><p data-i18n="w1p">Our own training halls and labs, with tools and a personal kit for every trainee included in the price.</p></div></li>
+        <li><svg width="30" height="30" viewBox="0 0 30 30" fill="none" aria-hidden="true"><circle cx="15" cy="15" r="13" stroke="#004973" stroke-width="2" stroke-dasharray="3 3"/><path d="M9 15.5l4 4 8-9" stroke="#0B2A42" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg><div><h3 data-i18n="w2">Up-to-date curricula</h3><p data-i18n="w2p">Written by sector experts with our international partners, and revised to match technology and the labour market.</p></div></li>
+        <li><svg width="30" height="30" viewBox="0 0 30 30" fill="none" aria-hidden="true"><circle cx="15" cy="15" r="13" stroke="#004973" stroke-width="2" stroke-dasharray="3 3"/><path d="M9 15.5l4 4 8-9" stroke="#0B2A42" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg><div><h3 data-i18n="w3">Employers in the room</h3><p data-i18n="w3p">Factories, companies and international partners offer internships and jobs to our graduates in Egypt and abroad.</p></div></li>
+        <li><svg width="30" height="30" viewBox="0 0 30 30" fill="none" aria-hidden="true"><circle cx="15" cy="15" r="13" stroke="#004973" stroke-width="2" stroke-dasharray="3 3"/><path d="M9 15.5l4 4 8-9" stroke="#0B2A42" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg><div><h3 data-i18n="w4">Protection and accountability</h3><p data-i18n="w4p">Code of conduct, safeguarding, health and safety, and a complaints mechanism that meets donor and humanitarian standards.</p></div></li>
+      </ul>
+    </div>
+    <div>
+      <span class="eyebrow" data-i18n="partEyebrow">International partners</span>
+      <div class="partners" style="margin-top:20px">
+        <div class="partner"><b>VeniceCom Group SRL</b><span data-i18n="pa1">Italy · software training and employment</span></div>
+        <div class="partner"><b data-i18n="pa2n">Italian company</b><span data-i18n="pa2">Italy · placement in the Italian labour market</span></div>
+        <div class="partner"><b>DBTECH Europe-APS</b><span data-i18n="pa3">Italy · curriculum development</span></div>
+        <div class="partner"><b>CNOS-FAP Torino</b><span data-i18n="pa4">Italy · curriculum development</span></div>
+        <div class="partner"><b>Breadfast</b><span data-i18n="pa5">Egypt · recruitment partner</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="contact" id="contact">
+  <div class="wrap contact-grid">
+    <div>
+      <img src="nahj-logo.png" alt="Nahj for Development and Training Solutions logo" width="576" height="536" style="width:150px;margin-bottom:22px">
+      <span class="eyebrow" data-i18n="coEyebrow">Contact</span>
+      <h2 data-i18n="coTitle" style="margin-top:14px">Planning a livelihood or training programme?</h2>
+      <p class="lead" data-i18n="coLead" style="margin-top:16px">Tell us about your target group and timeline. We reply with a training plan and capacity for your area.</p>
+      <div class="info">
+        <div><small data-i18n="coAddrL">Address</small><p data-i18n="coAddr">88 Misr Helwan Agricultural Road, Maadi, Cairo, Egypt</p><a class="maplink" href="https://www.google.com/maps/search/?api=1&amp;query=88+Misr+Helwan+Agricultural+Road,+Maadi,+Cairo,+Egypt" target="_blank" rel="noopener" data-i18n="coMapLink">Open in Google Maps ↗</a></div>
+        <div><small data-i18n="coMailL">Email</small><a href="mailto:info@nahj-dev.com" class="ltr">info@nahj-dev.com</a></div>
+        <div><small data-i18n="coFbL">Facebook</small><a href="https://www.facebook.com/Nahjfordevelopment" target="_blank" rel="noopener" class="ltr">facebook.com/Nahjfordevelopment</a><a class="maplink" href="https://m.me/Nahjfordevelopment" target="_blank" rel="noopener" data-i18n="coMsgr">Message us on Messenger ↗</a></div>
+        <div><small data-i18n="coWebL">Website</small><a href="https://www.nahj-dev.com" class="ltr">www.nahj-dev.com</a></div>
+      </div>
+      <div class="map">
+        <iframe src="https://www.google.com/maps?q=88+Misr+Helwan+Agricultural+Road,+Maadi,+Cairo,+Egypt&amp;output=embed" title="Map showing Nahj at 88 Misr Helwan Agricultural Road, Maadi, Cairo" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>
+        <a href="https://www.google.com/maps/search/?api=1&amp;query=88+Misr+Helwan+Agricultural+Road,+Maadi,+Cairo,+Egypt" target="_blank" rel="noopener" data-i18n="coMapOpen">88 Misr Helwan Agricultural Road, Maadi · Get directions ↗</a>
+      </div>
+    </div>
+    <form id="contactForm" novalidate>
+      <div class="row2">
+        <label for="f-name"><span data-i18n="fName">Your name</span><input id="f-name" name="name" required autocomplete="name"></label>
+        <label for="f-org"><span data-i18n="fOrg">Organisation</span><input id="f-org" name="org" autocomplete="organization"></label>
+      </div>
+      <label for="f-email"><span data-i18n="fEmail">Email</span><input id="f-email" name="email" type="email" required autocomplete="email"></label>
+      <label for="f-topic"><span data-i18n="fTopic">What do you need?</span>
+        <select id="f-topic" name="topic">
+          <option data-i18n="o1">Vocational training programme</option>
+          <option data-i18n="o2">Life skills and entrepreneurship</option>
+          <option data-i18n="o3">Digital and coding skills</option>
+          <option data-i18n="o4">Recruitment or job fair</option>
+          <option data-i18n="o5">Curriculum consultancy</option>
+        </select>
+      </label>
+      <label for="f-msg"><span data-i18n="fMsg">Message</span><textarea id="f-msg" name="message" required></textarea></label>
+      <button class="btn btn-dark" type="submit" data-i18n="fSend">Send by email</button>
+      <p class="form-note" id="formNote" data-i18n="fNote" aria-live="polite">This opens your email app with the message ready to send.</p>
+    </form>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap foot">
+    <span style="display:flex;align-items:center;gap:12px"><img src="nahj-mark.png" alt="" width="40" height="34" style="background:#fff;border-radius:10px;padding:5px"><span><b data-i18n="footName">Nahj for Development and Training Solutions</b> · <span data-i18n="footCopy">© 2026</span></span></span>
+    <span><a href="https://www.facebook.com/Nahjfordevelopment" target="_blank" rel="noopener" style="color:#fff">Facebook</a> · <span data-i18n="footLegal">Commercial Registry 282816 · Tax Card 773-944-389</span></span>
+  </div>
+</footer>
+
+<script>
+const AR = {
+  brand:"نهج", brandSub:"للحلول التنموية والتدريبية",
+  navAbout:"من نحن", navPrograms:"البرامج", navApproach:"منهجيتنا", navExperience:"خبراتنا", navPartners:"شركاؤنا", navContact:"تواصل معنا",
+  heroEyebrow:"تدريب مهني · تشغيل · مشروعات صغيرة",
+  heroTitleA:"تدريب ينتهي", heroTitleB:"بوظيفة أو مشروع",
+  heroLead:"تصمم نهج وتنفذ برامج عملية للتدريب المهني والرقمي والمهارات الحياتية وريادة الأعمال في مصر، للشباب والنساء واللاجئين والمجتمعات المضيفة، وتتابع كل خريج حتى تتحول المهارة إلى دخل.",
+  ctaPrimary:"كن شريكًا لنا", ctaSecondary:"تعرّف على برامجنا",
+  altHero:"متدربون في الطهي والإدارة والصيانة أمام شهادة",
+  statsEyebrow:"سجل فريقنا", statsNote:"نتائج برامج سبل العيش التي قادها مؤسسونا ومدربونا قبل تأسيس نهج وبعده.",
+  s1n:"22,000", s1:"مستفيد تم تدريبهم في أنحاء مصر",
+  s2n:"+9,800", s2:"مشروع صغير تم تأسيسه ومتابعته",
+  s3n:"+30", s3:"مسارًا مهنيًا ورقميًا ومهاريًا",
+  s4n:"24 شهرًا", s4:"من المتابعة والدعم بعد التدريب",
+  qText:"أسسنا نهج لأن الشهادة وحدها لا تغيّر حياة أحد. ما يغيّرها هو عمل ثابت أو مشروع قائم، لذلك نبقى مع كل متدرب حتى تتحول مهارته إلى دخل.", qWho:"المؤسسون ومجلس الإدارة", qOrg:"نهج للحلول التنموية والتدريبية",
+  aboutEyebrow:"عن نهج",
+  aboutTitle:"«نهج» يعني الطريق، وطريقنا يبدأ من قاعة التدريب وينتهي في سوق العمل.",
+  aboutP1:"نهج للحلول التنموية والتدريبية شركة مصرية متخصصة في التدريب المهني وبناء القدرات وتنمية المهارات والاستشارات التدريبية. نبني كل برنامج حول احتياجات أصحاب الأعمال، ونجمع بين المعرفة النظرية والتطبيق العملي ليخرج المتدرب بمهارة قابلة للبيع.",
+  aboutP2:"يُعد مدربونا واستشاريونا المناهج ويحدّثونها، ويديرون ورشًا مجهزة بالكامل، ويقيسون ما يستطيع كل متدرب فعله في النهاية، لا مجرد الحضور.",
+  c1:"شباب 18–35", c2:"النساء", c3:"اللاجئون والمهاجرون", c4:"المجتمعات المضيفة", c5:"خريجو التعليم الفني", c6:"أصحاب المشروعات متناهية الصغر",
+  altAbout:"مدرب يقدم عرضًا لمجموعة صغيرة في قاعة اجتماعات",
+  progEyebrow:"البرامج", progTitle:"مهن يطلبها سوق العمل",
+  progLead:"تستمر الدورات من أسبوعين إلى أربعة أسابيع، ونحو 85% منها تطبيق عملي، في مجموعات من 6 إلى 20 متدربًا. يحصل كل متدرب على أدواته وخاماته الخاصة.",
+  t1tag:"فني", t1:"صيانة الهاتف المحمول", t1p:"تشخيص الأعطال، وإصلاح الشاشات واللوحات، وتحديث البرمجيات، وإدارة محل صيانة.",
+  t2tag:"فني", t2:"الأجهزة المنزلية والكهرباء والتكييف", t2p:"صيانة الأجهزة المنزلية والكهربائية، والتكييف والتبريد، وتركيب الأطباق اللاقطة.",
+  t3tag:"ملابس", t3:"الخياطة وتصميم الأزياء", t3p:"التفصيل والخياطة، والتطريز، والملابس الجاهزة والمفروشات والحقائب، والتصميم العصري والتراثي.",
+  t4tag:"حِرف يدوية", t4:"الحِرف والإنتاج الصغير", t4p:"الكروشيه، والمكرميه، والإكسسوارات والحلي النحاسية، والشموع، والريزن، والمنتجات الجلدية، وصناعة المنظفات.",
+  t5tag:"تجميل", t5:"المكياج وتصفيف الشعر", t5p:"المكياج والكوافير وتخصصات التجميل، مع النظافة وخدمة العملاء والتسعير.",
+  t6tag:"تجميل", t6:"الحلاقة", t6p:"قص الشعر والحلاقة وتهذيب اللحية، وسلامة الأدوات، وتجهيز كرسي أو صالون.",
+  t7tag:"غذاء", t7:"المخبوزات والحلويات", t7p:"إنتاج المخبوزات والحلويات ومساعد شيف حلواني، مع سلامة الغذاء وحساب التكلفة.",
+  t8tag:"أعمال ومهارات رقمية", t8:"ريادة الأعمال والمهارات الحياتية والرقمية", t8p:"خطط العمل، وإدارة المشروعات الصغيرة، ومهارات التوظيف، والتسويق الرقمي، والبرمجة، وتحليل البيانات.",
+  altPhone:"فنيون يصلحون هاتفًا ذكيًا كبيرًا", altAppl:"منزل متصل بالتكييف والغسالة والتلفاز والكاميرا", altSew:"سيدة تخيط بجوار مانيكان", altCraft:"يدان تقصان وتلصقان أشكالًا ورقية", altHair:"مصففة شعر تصفف شعر عميلة", altBarber:"حلاق يقص شعر زبون", altCook:"متدربان بمريلتين يحضّران الطعام", altBiz:"مدرب يقود جلسة تدريب على الأعمال",
+  progNote:"تحتاج مهنة أخرى؟ نصمم حقائب تدريبية جديدة وفق دراسة سوق العمل الخاصة ببرنامجك.",
+  apEyebrow:"منهجيتنا", apTitle:"ثماني خطوات من اليوم الأول إلى أول دخل",
+  apLead:"تسير كل البرامج بالمتدربين على الطريق نفسه، مع تكييفه حسب المهنة ومستوى المتدرب.",
+  p1:"التقييم", p1d:"اختبار مبسط لمستوى كل متدرب وخبراته وأهدافه.",
+  p2:"التعلّم", p2d:"الأساسيات النظرية وقواعد السلامة بأسلوب بسيط.",
+  p3:"العرض العملي", p3d:"يعرض المدرب كل خطوة على أدوات وخامات حقيقية.",
+  p4:"الممارسة", p4d:"تطبيق متكرر تحت الإشراف مع ملاحظات مستمرة.",
+  p5:"الإنتاج", p5d:"منتجات ومهام حقيقية في ظروف تحاكي بيئة العمل.",
+  p6:"التقييم النهائي", p6d:"اختبارات عملية وتقييم قبلي وبعدي يوضح ما يستطيعه كل متدرب.",
+  p7:"الربط", p7d:"معارض توظيف ومقابلات مع أصحاب العمل وتدريب عملي أو خطة مشروع.",
+  p8:"المتابعة", p8d:"دعم فني ومالي وتسويقي حتى يستقل العمل بذاته.",
+  sp1n:"85 / 15", sp1:"نسبة التطبيق العملي إلى النظري في دوراتنا الفنية.",
+  sp2n:"48 ساعة", sp2:"أقصى مدة لدراسة أي شكوى، عبر الهاتف أو البريد أو صندوق الشكاوى.",
+  sp3n:"مباشر", sp3:"سجلات حضور إلكترونية يطّلع عليها الشريك الممول في أي وقت.",
+  exEyebrow:"خبراتنا", exTitle:"ما حققته برامجنا",
+  exLead:"نقيس النتائج بعدد من حصلوا على عمل وعدد المشروعات التي بدأت، لذلك نعرض كل مشروع من الوصول إلى النتيجة.",
+  e1who:"فينيسكوم · إيطاليا", e1:"من التدريب على البرمجيات إلى التوظيف", e1p:"تطوير البرمجيات والمواقع وتطبيقات الهاتف وثقافة العمل الإيطالية لخريجي المعاهد والجامعات الفنية المصرية.",
+  e1a:"50 تم الوصول إليهم", e1b:"25 متدربًا", e1c:"20 تم تقييمهم", e1d:"9 تم توظيفهم",
+  e2who:"بريدفاست · مصر", e2:"التوظيف ومعرض الوظائف", e2p:"الوصول للمرشحين وتدريبهم قبل التوظيف وتنظيم معرض وظائف لشغل وظائف مختلفة بالشركة.",
+  e2a:"400 متقدم", e2b:"100 تم توظيفهم",
+  e3who:"سيدات مهاجرات · مصر", e3:"مهارات التوظيف وريادة الأعمال", e3p:"خمسة أيام من تدريب مهارات التوظيف وريادة الأعمال، ثم تقييم خطط المشروعات ودعم التأسيس.",
+  e3a:"25 متدربة", e3b:"18 خطة عمل", e3c:"5 مشروعات صغيرة",
+  e4who:"شركة إيطالية · إيطاليا", e4:"إعداد الشباب المصري للعمل في إيطاليا", e4p:"تدريب فني في المهن المطلوبة، وتدريب مكثف على اللغة الإيطالية والثقافة المهنية، وتوظيف المؤهلين لدى الشركة.",
+  e5who:"مدارس فنية · مصر", e5:"استشارات تطوير المناهج", e5p:"تصميم المناهج والبرامج التدريبية لمؤسسات تعليمية ومدارس فنية حديثة التأسيس بما يتوافق مع احتياجات الصناعات المحلية.",
+  fTitle:"أسسها من أداروا برامج سبل العيش على نطاق واسع",
+  fP:"صمم فريق الإدارة والمدربون لدينا برامج سبل العيش والتدريب المهني والتشغيل وأداروها للاجئين والمهاجرين والمجتمعات المصرية المضيفة، بالتعاون مع منظمات محلية ودولية.",
+  whyEyebrow:"لماذا نهج", whyTitle:"أكثر من مجرد جهة تدريب",
+  w1:"ورش مجهزة", w1p:"قاعات ومعامل تدريب خاصة بنا، مع الأدوات وحقيبة تدريب لكل متدرب ضمن التكلفة.",
+  w2:"مناهج حديثة", w2p:"يُعدها خبراء القطاع مع شركائنا الدوليين، وتُحدَّث لتواكب التكنولوجيا وسوق العمل.",
+  w3:"أصحاب العمل شركاء", w3p:"مصانع وشركات وشركاء دوليون يوفرون تدريبًا عمليًا وفرص عمل لخريجينا داخل مصر وخارجها.",
+  w4:"الحماية والمساءلة", w4p:"مدونة سلوك، وحماية المستفيدين، والصحة والسلامة المهنية، وآلية شكاوى وفق معايير المانحين والعمل الإنساني.",
+  partEyebrow:"شركاء دوليون",
+  pa1:"إيطاليا · التدريب على البرمجيات والتوظيف", pa2n:"شركة إيطالية", pa2:"إيطاليا · التوظيف في سوق العمل الإيطالي", pa3:"إيطاليا · تطوير المناهج", pa4:"إيطاليا · تطوير المناهج", pa5:"مصر · شريك توظيف",
+  coEyebrow:"تواصل معنا", coTitle:"تخطط لبرنامج تدريب أو سبل عيش؟",
+  coLead:"أخبرنا عن الفئة المستهدفة والجدول الزمني، وسنرد بخطة تدريب والطاقة الاستيعابية المتاحة في منطقتك.",
+  coAddrL:"العنوان", coAddr:"٨٨ طريق مصر حلوان الزراعي، المعادي، القاهرة، مصر", coMailL:"البريد الإلكتروني", coWebL:"الموقع",
+  coMapLink:"افتح في خرائط جوجل ↗", coFbL:"فيسبوك", coMsgr:"راسلنا عبر ماسنجر ↗", coMapOpen:"٨٨ طريق مصر حلوان الزراعي، المعادي · احصل على الاتجاهات ↗",
+  fName:"الاسم", fOrg:"المؤسسة", fEmail:"البريد الإلكتروني", fTopic:"ما الذي تحتاجه؟",
+  o1:"برنامج تدريب مهني", o2:"المهارات الحياتية وريادة الأعمال", o3:"المهارات الرقمية والبرمجة", o4:"التوظيف أو معرض وظائف", o5:"استشارات المناهج",
+  fMsg:"الرسالة", fSend:"إرسال عبر البريد", fNote:"سيفتح تطبيق البريد لديك والرسالة جاهزة للإرسال.",
+  footName:"نهج للحلول التنموية والتدريبية", footCopy:"© 2026", footLegal:"سجل تجاري 282816 · بطاقة ضريبية 773-944-389"
+};
+const EN = {};
+document.querySelectorAll("[data-i18n]").forEach(el => { EN[el.dataset.i18n] = el.innerHTML; });
+document.querySelectorAll("[data-i18n-alt]").forEach(el => { EN[el.dataset.i18nAlt] = el.alt; });
+
+function setLang(lang){
+  const dict = lang === "ar" ? AR : EN;
+  document.documentElement.lang = lang;
+  document.documentElement.dir = lang === "ar" ? "rtl" : "ltr";
+  document.querySelectorAll("[data-i18n]").forEach(el => {
+    const v = dict[el.dataset.i18n];
+    if (v !== undefined) el.innerHTML = v;
+  });
+  document.querySelectorAll("[data-i18n-alt]").forEach(el => {
+    const v = dict[el.dataset.i18nAlt];
+    if (v !== undefined) el.alt = v;
+  });
+  const btn = document.getElementById("langBtn");
+  btn.textContent = lang === "ar" ? "English" : "عربي";
+  document.title = lang === "ar" ? "نهج للحلول التنموية والتدريبية" : "Nahj for Development and Training Solutions";
+  try { localStorage.setItem("nahj-lang", lang); } catch(e) {}
+}
+let current = "en";
+try { current = localStorage.getItem("nahj-lang") || "en"; } catch(e) {}
+if (current === "ar") setLang("ar");
+document.getElementById("langBtn").addEventListener("click", () => {
+  current = current === "ar" ? "en" : "ar";
+  setLang(current);
+});
+
+const menuBtn = document.getElementById("menuBtn"), links = document.getElementById("links");
+menuBtn.addEventListener("click", () => {
+  const open = links.classList.toggle("open");
+  menuBtn.setAttribute("aria-expanded", open);
+});
+links.querySelectorAll("a").forEach(a => a.addEventListener("click", () => {
+  links.classList.remove("open"); menuBtn.setAttribute("aria-expanded", "false");
+}));
+
+document.getElementById("contactForm").addEventListener("submit", e => {
+  e.preventDefault();
+  const f = e.target, note = document.getElementById("formNote");
+  if (!f.name.value.trim() || !f.email.value.trim() || !f.message.value.trim()) {
+    note.textContent = current === "ar" ? "يرجى إدخال الاسم والبريد الإلكتروني والرسالة." : "Please add your name, email and message.";
+    return;
+  }
+  const subject = `${f.topic.value} – ${f.org.value || f.name.value}`;
+  const body = `${f.message.value}\n\n${f.name.value}\n${f.org.value}\n${f.email.value}`;
+  window.location.href = `mailto:info@nahj-dev.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+  note.textContent = current === "ar"
+    ? "إذا لم يفتح تطبيق البريد، راسلنا مباشرة على info@nahj-dev.com"
+    : "If your email app didn't open, write to us at info@nahj-dev.com";
+});
+</script>
+</body>
+</html>
