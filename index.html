@@ -603,7 +603,7 @@ document.getElementById("contactForm")?.addEventListener("submit", async e => {
   }
   btn.disabled = true; btn.textContent = ar ? "جارٍ الإرسال…" : "Sending…";
   try {
-    const res = await fetch("https://formsubmit.co/ajax/ceo@nahj-dev.com", {
+    const res = await fetch("https://formsubmit.co/ajax/info@nahj-dev.com", {
       method: "POST",
       headers: { "Content-Type": "application/json", "Accept": "application/json" },
       body: JSON.stringify({
