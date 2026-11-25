@@ -465,8 +465,9 @@ footer{background:var(--ink);color:#AEB8CF;padding:36px 0;font-size:.9rem}
         </select>
       </label>
       <label for="f-msg"><span data-i18n="fMsg">Message</span><textarea id="f-msg" name="message" required></textarea></label>
-      <button class="btn btn-dark" type="submit" data-i18n="fSend">Send by email</button>
-      <p class="form-note" id="formNote" data-i18n="fNote" aria-live="polite">This opens your email app with the message ready to send.</p>
+      <input type="text" name="_honey" id="f-honey" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0">
+      <button class="btn btn-dark" type="submit" id="sendBtn" data-i18n="fSend">Send message</button>
+      <p class="form-note" id="formNote" data-i18n="fNote" aria-live="polite">We usually reply within two working days.</p>
     </form>
   </div>
 </section>
@@ -550,7 +551,7 @@ const AR = {
   coMapLink:"افتح في خرائط جوجل ↗", coFbL:"فيسبوك", coMsgr:"راسلنا عبر ماسنجر ↗", coMapOpen:"٨٨ طريق مصر حلوان الزراعي، المعادي · احصل على الاتجاهات ↗",
   fName:"الاسم", fOrg:"المؤسسة", fEmail:"البريد الإلكتروني", fTopic:"ما الذي تحتاجه؟",
   o1:"برنامج تدريب مهني", o2:"المهارات الحياتية وريادة الأعمال", o3:"المهارات الرقمية والبرمجة", o4:"التوظيف أو معرض وظائف", o5:"استشارات المناهج", o6:"استفسار آخر",
-  fMsg:"الرسالة", fSend:"إرسال عبر البريد", fNote:"سيفتح تطبيق البريد لديك والرسالة جاهزة للإرسال.",
+  fMsg:"الرسالة", fSend:"إرسال الرسالة", fNote:"نرد عادةً خلال يومي عمل.",
   footName:"نهج للحلول التنموية والتدريبية", footCopy:"© 2026", footLegal:"سجل تجاري 282816 · بطاقة ضريبية 773-944-389"
 };
 const EN = {};
@@ -591,19 +592,37 @@ links.querySelectorAll("a").forEach(a => a.addEventListener("click", () => {
   links.classList.remove("open"); menuBtn.setAttribute("aria-expanded", "false");
 }));
 
-document.getElementById("contactForm")?.addEventListener("submit", e => {
+document.getElementById("contactForm")?.addEventListener("submit", async e => {
   e.preventDefault();
-  const f = e.target, note = document.getElementById("formNote");
+  const f = e.target, note = document.getElementById("formNote"), btn = document.getElementById("sendBtn");
+  const ar = current === "ar";
+  if (f._honey.value) return;
   if (!f.name.value.trim() || !f.email.value.trim() || !f.message.value.trim()) {
-    note.textContent = current === "ar" ? "يرجى إدخال الاسم والبريد الإلكتروني والرسالة." : "Please add your name, email and message.";
+    note.textContent = ar ? "يرجى إدخال الاسم والبريد الإلكتروني والرسالة." : "Please add your name, email and message.";
     return;
   }
-  const subject = `${f.topic.value} – ${f.org.value || f.name.value}`;
-  const body = `${f.message.value}\n\n${f.name.value}\n${f.org.value}\n${f.email.value}`;
-  window.location.href = `mailto:info@nahj-dev.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-  note.textContent = current === "ar"
-    ? "إذا لم يفتح تطبيق البريد، راسلنا مباشرة على info@nahj-dev.com"
-    : "If your email app didn't open, write to us at info@nahj-dev.com";
+  btn.disabled = true; btn.textContent = ar ? "جارٍ الإرسال…" : "Sending…";
+  try {
+    const res = await fetch("https://formsubmit.co/ajax/ceo@nahj-dev.com", {
+      method: "POST",
+      headers: { "Content-Type": "application/json", "Accept": "application/json" },
+      body: JSON.stringify({
+        _subject: `Website inquiry: ${f.topic.value} – ${f.org.value || f.name.value}`,
+        _template: "table",
+        _replyto: f.email.value,
+        Name: f.name.value, Organisation: f.org.value, Email: f.email.value,
+        Topic: f.topic.value, Message: f.message.value
+      })
+    });
+    const data = await res.json().catch(() => ({}));
+    if (!res.ok || data.success === "false" || data.success === false) throw new Error(data.message || "send failed");
+    f.reset();
+    note.textContent = ar ? "شكرًا لك، تم إرسال رسالتك. سنتواصل معك قريبًا." : "Thank you, your message was sent. We'll be in touch soon.";
+  } catch (err) {
+    note.textContent = ar ? "تعذّر إرسال الرسالة. يرجى المحاولة مرة أخرى أو مراسلتنا على info@nahj-dev.com" : "Your message couldn't be sent. Please try again or write to info@nahj-dev.com";
+  } finally {
+    btn.disabled = false; btn.textContent = ar ? AR.fSend : EN.fSend;
+  }
 });
 </script>
 </body>
