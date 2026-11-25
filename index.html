@@ -10,6 +10,8 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Readex+Pro:wght@400;500;600;700&family=IBM+Plex+Sans+Arabic:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
+@font-face{font-family:"Somar";src:url("somar-var.woff2") format("woff2");font-weight:100 900;font-display:swap}
+:root[lang="ar"]{--display:"Somar","IBM Plex Sans Arabic",system-ui,sans-serif;--body:"Somar","IBM Plex Sans Arabic",system-ui,sans-serif}
 :root{
   /* Layout idea: one dashed "path" (نهج) runs through the page, from training to income */
   --sand:#F5EADB;
@@ -49,11 +51,12 @@ header{position:sticky;top:0;z-index:20;background:color-mix(in srgb,var(--sand)
 .mark{width:52px;height:auto;flex:none}
 .brand-name{font-family:var(--display);font-weight:700;color:var(--blue);font-size:1.25rem;letter-spacing:.06em;line-height:1}
 .brand-sub{display:block;font-size:.72rem;color:var(--muted);letter-spacing:.02em;font-weight:500;margin-top:3px}
-.links{display:flex;gap:26px;align-items:center}
+.links{display:flex;gap:26px;align-items:center;margin-inline-start:auto;margin-inline-end:8px}
 .links a{color:var(--ink);text-decoration:none;font-weight:500;font-size:.95rem}
 .links a:hover{color:var(--blue)}
 .lang{font-family:var(--display);border:1.5px solid var(--ink);background:transparent;color:var(--ink);border-radius:999px;padding:6px 16px;font-size:.92rem;font-weight:600;cursor:pointer}
 .lang:hover{background:var(--ink);color:var(--paper)}
+.nav-end{display:flex;align-items:center;gap:14px}
 .menu-btn{display:none;background:none;border:0;padding:8px;cursor:pointer;color:var(--ink)}
 @media (max-width:900px){
   .links{display:none;position:absolute;top:72px;inset-inline:0;background:var(--paper);flex-direction:column;align-items:flex-start;padding:20px 24px;gap:16px;border-bottom:1px solid var(--line)}
@@ -223,11 +226,13 @@ footer{background:var(--ink);color:#AEB8CF;padding:36px 0;font-size:.9rem}
       <a href="#experience" data-i18n="navExperience">Experience</a>
       <a href="#partners" data-i18n="navPartners">Partners</a>
       <a href="#contact" data-i18n="navContact">Contact</a>
-      <button class="lang" id="langBtn" type="button" aria-label="Switch language">عربي</button>
     </nav>
+    <div class="nav-end">
+    <button class="lang" id="langBtn" type="button" aria-label="Switch language">عربي</button>
     <button class="menu-btn" id="menuBtn" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="links">
       <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
     </button>
+    </div>
   </div>
 </header>
 
@@ -456,6 +461,7 @@ footer{background:var(--ink);color:#AEB8CF;padding:36px 0;font-size:.9rem}
           <option data-i18n="o3">Digital and coding skills</option>
           <option data-i18n="o4">Recruitment or job fair</option>
           <option data-i18n="o5">Curriculum consultancy</option>
+          <option data-i18n="o6">Other inquiry</option>
         </select>
       </label>
       <label for="f-msg"><span data-i18n="fMsg">Message</span><textarea id="f-msg" name="message" required></textarea></label>
@@ -476,7 +482,7 @@ footer{background:var(--ink);color:#AEB8CF;padding:36px 0;font-size:.9rem}
 <script>
 const AR = {
   brand:"نهج", brandSub:"للحلول التنموية والتدريبية",
-  navAbout:"من نحن", navPrograms:"البرامج", navApproach:"منهجيتنا", navExperience:"خبراتنا", navPartners:"شركاؤنا", navContact:"تواصل معنا",
+  navAbout:"من نحن", navPrograms:"البرامج", navApproach:"منهجيتنا", navExperience:"خبراتنا", navPartners:"شركاؤنا", navGallery:"معرض الصور", navContact:"تواصل معنا",
   heroEyebrow:"تدريب مهني · تشغيل · مشروعات صغيرة",
   heroTitleA:"تدريب ينتهي", heroTitleB:"بوظيفة أو مشروع",
   heroLead:"تصمم نهج وتنفذ برامج عملية للتدريب المهني والرقمي والمهارات الحياتية وريادة الأعمال في مصر، للشباب والنساء واللاجئين والمجتمعات المضيفة، وتتابع كل خريج حتى تتحول المهارة إلى دخل.",
@@ -543,7 +549,7 @@ const AR = {
   coAddrL:"العنوان", coAddr:"٨٨ طريق مصر حلوان الزراعي، المعادي، القاهرة، مصر", coMailL:"البريد الإلكتروني", coWebL:"الموقع",
   coMapLink:"افتح في خرائط جوجل ↗", coFbL:"فيسبوك", coMsgr:"راسلنا عبر ماسنجر ↗", coMapOpen:"٨٨ طريق مصر حلوان الزراعي، المعادي · احصل على الاتجاهات ↗",
   fName:"الاسم", fOrg:"المؤسسة", fEmail:"البريد الإلكتروني", fTopic:"ما الذي تحتاجه؟",
-  o1:"برنامج تدريب مهني", o2:"المهارات الحياتية وريادة الأعمال", o3:"المهارات الرقمية والبرمجة", o4:"التوظيف أو معرض وظائف", o5:"استشارات المناهج",
+  o1:"برنامج تدريب مهني", o2:"المهارات الحياتية وريادة الأعمال", o3:"المهارات الرقمية والبرمجة", o4:"التوظيف أو معرض وظائف", o5:"استشارات المناهج", o6:"استفسار آخر",
   fMsg:"الرسالة", fSend:"إرسال عبر البريد", fNote:"سيفتح تطبيق البريد لديك والرسالة جاهزة للإرسال.",
   footName:"نهج للحلول التنموية والتدريبية", footCopy:"© 2026", footLegal:"سجل تجاري 282816 · بطاقة ضريبية 773-944-389"
 };
@@ -585,7 +591,7 @@ links.querySelectorAll("a").forEach(a => a.addEventListener("click", () => {
   links.classList.remove("open"); menuBtn.setAttribute("aria-expanded", "false");
 }));
 
-document.getElementById("contactForm").addEventListener("submit", e => {
+document.getElementById("contactForm")?.addEventListener("submit", e => {
   e.preventDefault();
   const f = e.target, note = document.getElementById("formNote");
   if (!f.name.value.trim() || !f.email.value.trim() || !f.message.value.trim()) {
